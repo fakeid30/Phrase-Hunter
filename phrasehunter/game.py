@@ -24,15 +24,19 @@ class Game:
 
     def get_random_phrase(self):
         import random
+
         ret = random.choice(self.phrases)
         return ret
 
-    def welcome(self):
-        print("""
+    @staticmethod
+    def welcome():
+        print(
+            """
         =================================
             Welcome to Phrase Hunter
         =================================
-        """)
+        """
+        )
 
     def start(self):
         self.welcome()
@@ -49,13 +53,12 @@ class Game:
                 if not self.active_phrase.check_guess(user_guess):
                     self.missed += 1
             elif self.active_phrase.check_complete(self.guesses):
-                print(f"\nCongratulations you have won the game.\n")
+                print("\nCongratulations you have won the game.\n")
                 break
 
-    def game_over(self):
+    @staticmethod
+    def game_over():
         print("\nYou have lost the game")
 
     def get_guess(self, user_guess):
         self.guesses.append(user_guess)
-
-
