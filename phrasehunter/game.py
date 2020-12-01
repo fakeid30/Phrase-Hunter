@@ -28,7 +28,8 @@ class Game:
         ret = random.choice(self.phrases)
         return ret
 
-    def welcome(self):
+    @staticmethod
+    def welcome():
         print(
             """
         =================================
@@ -55,7 +56,8 @@ class Game:
                 print("\nCongratulations you have won the game.\n")
                 break
 
-    def game_over(self):
+    @staticmethod
+    def game_over():
         print("\nYou have lost the game")
 
     def get_guess(self, user_guess):
