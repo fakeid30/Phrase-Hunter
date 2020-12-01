@@ -26,6 +26,3 @@ class Phrase:
             return True
 
         return False
-
-
-
