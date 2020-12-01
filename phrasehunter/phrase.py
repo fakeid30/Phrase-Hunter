@@ -21,6 +21,3 @@ class Phrase:
         for letter in self.phrase:
             let.append(letter)
         return set(let) == set(guesses)
-
-
-
