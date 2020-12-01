@@ -53,7 +53,7 @@ class Game:
                 if not self.active_phrase.check_guess(user_guess):
                     self.missed += 1
             elif self.active_phrase.check_complete(self.guesses):
-                print(f"\nCongratulations you have won the game.\n")
+                print("\nCongratulations you have won the game.\n")
                 break
 
     @staticmethod

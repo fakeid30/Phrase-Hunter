@@ -1,15 +1,15 @@
-class Student():
+class Student:
     def __init__(self, name):
         self.name = name
-    
+
     def change_name(self, new_name):
         self.name = new_name
 
 
-class Course():
+class Course:
     def __init__(self, name):
         self.name = name
-    
+
     def change_name(self, new_name):
         self.name = new_name
 
@@ -22,4 +22,4 @@ course = Course("Python")
 course.change_name("JavaScript")  # No error and changes the course's name
 
 print(course.name)
-#output JavaScript
+# output JavaScript
