@@ -13,18 +13,11 @@ class Phrase:
         let = []
         for letters in self.phrase:
             let.append(letters)
-        if guess in let:
-            return True
-        else:
-            return False
+        return guess in let
 
     def check_complete(self, guesses):
         # print("Check complete")
         let = []
         for letter in self.phrase:
             let.append(letter)
-        if set(let) == set(guesses):
-            return True
-        else:
-
-            return False
+        return set(let) == set(guesses)
