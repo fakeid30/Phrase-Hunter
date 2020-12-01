@@ -28,6 +28,3 @@ class Phrase:
         else:
 
             return False
-
-
-
