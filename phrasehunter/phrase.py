@@ -15,8 +15,7 @@ class Phrase:
             let.append(letters)
         if guess in let:
             return True
-        else:
-            return False
+        return False
 
     def check_complete(self, guesses):
         # print("Check complete")
@@ -25,9 +24,8 @@ class Phrase:
             let.append(letter)
         if set(let) == set(guesses):
             return True
-        else:
 
-            return False
+        return False
 
 
 
