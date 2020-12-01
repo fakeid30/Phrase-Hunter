@@ -24,16 +24,19 @@ class Game:
 
     def get_random_phrase(self):
         import random
+
         ret = random.choice(self.phrases)
         return ret
 
     @staticmethod
     def welcome():
-        print("""
+        print(
+            """
         =================================
             Welcome to Phrase Hunter
         =================================
-        """)
+        """
+        )
 
     def start(self):
         self.welcome()
@@ -59,5 +62,3 @@ class Game:
 
     def get_guess(self, user_guess):
         self.guesses.append(user_guess)
-
-
