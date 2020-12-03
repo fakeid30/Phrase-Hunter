@@ -7,7 +7,7 @@ class Phrase:
             if letter in guesses:
                 print(f"{letter}", end=" ")
             else:
-                print(f"_", end=" ")
+                print("_", end=" ")
 
     def check_guess(self, guess):
         let = []
@@ -15,17 +15,14 @@ class Phrase:
             let.append(letters)
         if guess in let:
             return True
-        else:
-            return False
+        return False
 
     def check_complete(self, guesses):
+        # print("Check complete")
         let = []
         for letter in self.phrase:
             let.append(letter)
         if set(let) == set(guesses):
             return True
-        else:
-            return False
 
-
-
+        return False
