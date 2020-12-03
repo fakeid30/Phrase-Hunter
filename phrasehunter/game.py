@@ -68,13 +68,15 @@ class Game:
                     ask = input("\nDo you want to replay this game?\n")
                     ask = ask.lower()
                     if ask == "yes":
-                        again_ask = input("\nDo you want to play this game in a fresh state?\n")
+                        again_ask = input(
+                            "\nDo you want to play this game in a fresh state?\n"
+                        )
                         again_ask = again_ask.lower()
                         if again_ask == "yes":
                             self.guesses = [" "]
                             self.missed = 0
                             self.start()
-                        elif again_ask == 'no':
+                        elif again_ask == "no":
                             self.guesses = [" "]
                             self.start()
                         else:
@@ -107,7 +109,7 @@ class Game:
 
     def game_reset_zero(self, input):
         input = input.lower()
-        if input == 'yes':
+        if input == "yes":
             self.guesses = [" "]
             self.missed = 0
             self.start()
