@@ -9,5 +9,5 @@ from phrasehunter.phrase import Phrase
 ## Start your game by calling the instance method that starts the game loop
 
 if __name__ == "__main__":
-      game = Game()
-      game.start()
+    game = Game()
+    game.start()
