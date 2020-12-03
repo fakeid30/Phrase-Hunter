@@ -14,10 +14,10 @@ class Game:
     def create_phrases(self, phrases):
         list_of_phrases = [
             "Hello World",
-            # "There is no Trying",
-            # "May The Force be With you",
-            # "You have to See the Matrix for yourself",
-            # "Life is like a box of Chocolates",
+            "There is no Trying",
+            "May The Force be With you",
+            "You have to See the Matrix for yourself",
+            "Life is like a box of Chocolates",
         ]
         self.phrases = [Phrase(items) for items in list_of_phrases]
         return self.phrases
