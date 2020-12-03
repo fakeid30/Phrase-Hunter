@@ -28,7 +28,8 @@ class Game:
         ret = random.choice(self.phrases)
         return ret
 
-    def welcome(self):
+    @staticmethod
+    def welcome():
         print(
             """
         =================================
@@ -39,31 +40,79 @@ class Game:
 
     def start(self):
         self.welcome()
-        while True:
-            if not self.active_phrase.check_complete(self.guesses):
-                if self.missed > 5:
-                    self.game_over()
-                    break
+        i = 0
+        while int(i) < 1:
+            try:
+                if not self.active_phrase.check_complete(self.guesses):
+                    if self.missed > 5:
+                        self.game_over()
+                        break
+                    print(f"\nNumbers Missed: {self.missed}")
+                    self.active_phrase.display(self.guesses)
+                    user_guess = input("\nEnter a Letter: ")
+                    user_guess = user_guess.lower()
+                    if not re.match("^[A-Za-z]*$", user_guess):
+                        print("\nOnly (A-Z) and (a-z) Allowed")
+                        replay = input("\nDo you want to replay?\n")
+                        self.error_replay(replay)
+                    elif len(user_guess) > 1:
+                        print("\nOnly one character allowed")
+                        replay = input("\nDo you want to replay?\n")
+                        self.error_replay(replay)
+                    self.get_guess(user_guess)
+                    if not self.active_phrase.check_guess(user_guess):
+                        self.remove_guess()
+                        self.missed += 1
+                elif self.active_phrase.check_complete(self.guesses):
+                    print("\nCongratulations you have won the game.\n")
+                    ask = input("\nDo you want to replay this game?\n")
+                    ask = ask.lower()
+                    if ask == "yes":
+                        again_ask = input(
+                            "\nDo you want to play this game in a fresh state?\n"
+                        )
+                        again_ask = again_ask.lower()
+                        if again_ask == "yes":
+                            self.guesses = [" "]
+                            self.missed = 0
+                            self.start()
+                        elif again_ask == "no":
+                            self.guesses = [" "]
+                            self.start()
+                        else:
+                            sys.exit()
+                    else:
+                        break
+            except Exception as e:
+                print(e)
+                pass
 
-                print(f"\nNumbers Missed: {self.missed}")
-                self.active_phrase.display(self.guesses)
-                user_guess = input("\nEnter a Letter: ")
-                if not re.match("^[a-z]*$", user_guess):
-                    print("\nOnly (a-z) Allowed")
-                    sys.exit()
-                elif len(user_guess) > 1:
-                    print("\nOnly one character allowed")
-                    sys.exit()
-                self.get_guess(user_guess)
-                if not self.active_phrase.check_guess(user_guess):
-                    self.missed += 1
-            elif self.active_phrase.check_complete(self.guesses):
-                print("\nCongratulations you have won the game.\n")
-                break
-
-    @staticmethod
-    def game_over():
-        print("\nYou have lost the game")
+    def game_over(self):
+        print("\nYou have lost the game\n")
+        ask = input("\nDo you wanna play again?\n")
+        self.game_reset_zero(ask)
 
     def get_guess(self, user_guess):
         self.guesses.append(user_guess)
+
+    def remove_guess(self):
+        self.guesses.pop()
+
+    def error_replay(self, input):
+        input = input.lower()
+        if input == "yes":
+            self.guesses = [" "]
+            self.missed = 0
+            self.start()
+        else:
+            sys.exit()
+
+    def game_reset_zero(self, input):
+        input = input.lower()
+        if input == "yes":
+            self.guesses = [" "]
+            self.missed = 0
+            self.start()
+        else:
+            print("\nExiting the game\n")
+            sys.exit()

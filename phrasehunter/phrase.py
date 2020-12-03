@@ -15,12 +15,17 @@ class Phrase:
             let.append(letters)
         if guess in let:
             return True
-        return False
+        elif guess not in let:
+            return False
+        else:
+            raise ValueError
 
     def check_complete(self, guesses):
         let = []
         for letter in self.phrase:
             let.append(letter)
+        # print(set(let))
+        # print(guesses)
         if set(let) == set(guesses):
             return True
         else:
