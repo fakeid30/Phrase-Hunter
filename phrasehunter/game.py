@@ -15,7 +15,7 @@ class Game:
             "There is no Trying",
             "May The Force be With you",
             "You have to See the Matrix for yourself",
-            "Life is like a box of Chocolates"
+            "Life is like a box of Chocolates",
         ]
         self.phrases = [Phrase(items) for items in list_of_phrases]
         return self.phrases
