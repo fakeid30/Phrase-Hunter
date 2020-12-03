@@ -1,4 +1,6 @@
 from .phrase import Phrase
+import re
+import sys
 
 
 class Game:
@@ -46,6 +48,12 @@ class Game:
                 print(f"\nNumbers Missed: {self.missed}")
                 self.active_phrase.display(self.guesses)
                 user_guess = input("\nEnter a Letter: ")
+                if not re.match("^[a-z]*$", user_guess):
+                    print("\nOnly (a-z) Allowed")
+                    sys.exit()
+                elif len(user_guess) > 1:
+                    print("\nOnly one character allowed")
+                    sys.exit()
                 self.get_guess(user_guess)
                 if not self.active_phrase.check_guess(user_guess):
                     self.missed += 1
