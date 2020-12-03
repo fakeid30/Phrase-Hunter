@@ -7,7 +7,7 @@ class Phrase:
             if letter in guesses:
                 print(f"{letter}", end=" ")
             else:
-                print(f"_", end=" ")
+                print("_", end=" ")
 
     def check_guess(self, guess):
         let = []
