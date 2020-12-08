@@ -15,10 +15,9 @@ class Phrase:
             let.append(letters)
         if guess in let:
             return True
-        elif guess not in let:
+        if guess not in let:
             return False
-        else:
-            raise ValueError
+        raise ValueError
 
     def check_complete(self, guesses):
         let = []
