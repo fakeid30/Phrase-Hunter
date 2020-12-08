@@ -25,6 +25,4 @@ class Phrase:
             let.append(letter)
         # print(set(let))
         # print(guesses)
-        if set(let) == set(guesses):
-            return True
-        return False
+        return set(let) == set(guesses)
