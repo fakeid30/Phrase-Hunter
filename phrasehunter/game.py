@@ -9,6 +9,7 @@ class Game:
         self.phrases = self.create_phrases()
         self.guesses = [" "]
         self.active_phrase = self.get_random_phrase()
+        self.i = 0
 
     def create_phrases(self):
         list_of_phrases = [
@@ -39,8 +40,7 @@ class Game:
 
     def start(self):
         self.welcome()
-        i = 0
-        while int(i) < 1:
+        while int(self.i) < 1:
             try:
                 if not self.active_phrase.check_complete(self.guesses):
                     if self.missed > 5:
@@ -65,29 +65,34 @@ class Game:
                 elif self.active_phrase.check_complete(self.guesses):
 
                     print("\nCongratulations you have won the game.\n")
-                    ask = input("\nDo you want to replay this game?\n")
-                    ask = ask.lower()
-
-                    if ask == "yes":
-                        again_ask = input(
-                            "\nDo you want to play this game in a fresh state?\n"
-                        )
-
-                        again_ask = again_ask.lower()
-
-                        if again_ask == "yes":
-                            self.guesses = [" "]
-                            self.missed = 0
-                            self.active_phrase = self.get_random_phrase()
-                            self.start()
-
-                        elif again_ask == "no":
-                            self.guesses = [" "]
-                            self.start()
-                        else:
+                    ask = "yes"
+                    while ask == "yes":
+                        ask = input("\nDo you want to replay this game?\n")
+                        ask = ask.lower()
+                        if ask == "no":
+                            self.i = 2
                             sys.exit()
-                    else:
-                        break
+
+                        elif ask == "yes":
+                            again_ask = input(
+                                "\nDo you want to play this game in a fresh state?\n"
+                            )
+
+                            again_ask = again_ask.lower()
+
+                            if again_ask == "yes":
+                                self.guesses = [" "]
+                                self.missed = 0
+                                self.active_phrase = self.get_random_phrase()
+                                self.start()
+
+                            elif again_ask == "no":
+                                self.guesses = [" "]
+                                self.start()
+                            else:
+                                sys.exit()
+                        else:
+                            break
             except Exception as e:
                 print(e)
                 pass
