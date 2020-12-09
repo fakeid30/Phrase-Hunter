@@ -1,6 +1,7 @@
 from .phrase import Phrase
 import re
 import sys
+import random
 
 
 class Game:
@@ -9,7 +10,13 @@ class Game:
         self.phrases = self.create_phrases()
         self.guesses = [" "]
         self.active_phrase = self.get_random_phrase()
+        self.winning_message = self.random_winning_message()
         self.i = 0
+
+    @staticmethod
+    def random_winning_message():
+        list_of_phrases = ["See you next time!", "Thanks for playing!"]
+        return random.choice(list_of_phrases)
 
     def create_phrases(self):
         list_of_phrases = [
@@ -23,7 +30,6 @@ class Game:
         return self.phrases
 
     def get_random_phrase(self):
-        import random
 
         ret = random.choice(self.phrases)
         return ret
@@ -71,6 +77,7 @@ class Game:
                         ask = ask.lower()
                         if ask == "no":
                             self.i = 2
+                            print(f"\n{self.winning_message}\n")
                             sys.exit()
 
                         elif ask == "yes":
@@ -155,7 +162,3 @@ class Game:
                 self.number_error_replay()
             elif re.match("^[A-Za-z]*$", reply):
                 self.get_guess(reply)
-
-
-## TODO
-# Change number_error_Display
