@@ -52,14 +52,11 @@ class Game:
                     user_guess = user_guess.lower()
 
                     if not re.match("^[A-Za-z]*$", user_guess):
-                        print("\nOnly (A-Z) and (a-z) Allowed")
-                        replay = input("\nDo you want to replay?\n")
-                        self.error_replay(replay)
+                        self.number_error_replay()
 
                     elif len(user_guess) > 1:
-                        print("\nOnly one character allowed")
-                        replay = input("\nDo you want to replay?\n")
-                        self.error_replay(replay)
+                        self.one_letter_error_replay()
+
                     self.get_guess(user_guess)
 
                     if not self.active_phrase.check_guess(user_guess):
@@ -106,21 +103,53 @@ class Game:
     def remove_guess(self):
         self.guesses.pop()
 
-    def error_replay(self, _input):
-        _input = _input.lower()
-        if input == "yes":
-            self.guesses = [" "]
-            self.missed = 0
-            self.start()
-        else:
-            sys.exit()
-
     def game_reset_zero(self, _input):
         _input = _input.lower()
-        if input == "yes":
+        if _input == "yes":
             self.guesses = [" "]
             self.missed = 0
             self.start()
         else:
             print("\nExiting the game\n")
             sys.exit()
+
+    def one_letter_error_replay(self):
+        # ask = input("\nOoops! One letter at a time, please\n")
+        # 
+        # while True:
+        #     print(len(ask))
+        #     if len(ask) == 1:
+        #         break
+        #     if re.match(r'[0-9]+', ask):
+        #         self.number_error_replay()
+        # self.get_guess(ask)
+        ask = input("\nOoops! One letter at a time, please\n")
+        if not re.match("^[A-Za-z]*$", ask):
+             self.number_error_replay()
+        else:
+            if len(ask) > 1:
+                self.one_letter_error_replay()
+            elif len(ask) == 1:
+                self.get_guess(ask)
+
+    def number_error_replay(self):
+        # replay = input("\nWoops! That was a number... not a letter\n")
+        # 
+        # while True:
+        #     if re.match("^[A-Za-z]*$", replay) and len(replay) < 2:
+        #         break
+        #     elif len(replay) > 1:
+        #         self.one_letter_error_replay()
+        # self.get_guess(replay)
+        reply = input("\nWoops! That was a number... not a letter\n")
+
+        if len(reply) > 1:
+            self.one_letter_error_replay()
+        else:
+            if not re.match("^[A-Za-z]*$", reply):
+                self.number_error_replay()
+            elif re.match("^[A-Za-z]*$", reply):
+                self.get_guess(reply)
+
+## TODO
+# Change number_error_Display
