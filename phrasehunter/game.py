@@ -115,7 +115,7 @@ class Game:
 
     def one_letter_error_replay(self):
         # ask = input("\nOoops! One letter at a time, please\n")
-        # 
+        #
         # while True:
         #     print(len(ask))
         #     if len(ask) == 1:
@@ -125,7 +125,7 @@ class Game:
         # self.get_guess(ask)
         ask = input("\nOoops! One letter at a time, please\n")
         if not re.match("^[A-Za-z]*$", ask):
-             self.number_error_replay()
+            self.number_error_replay()
         else:
             if len(ask) > 1:
                 self.one_letter_error_replay()
@@ -134,7 +134,7 @@ class Game:
 
     def number_error_replay(self):
         # replay = input("\nWoops! That was a number... not a letter\n")
-        # 
+        #
         # while True:
         #     if re.match("^[A-Za-z]*$", replay) and len(replay) < 2:
         #         break
@@ -150,6 +150,7 @@ class Game:
                 self.number_error_replay()
             elif re.match("^[A-Za-z]*$", reply):
                 self.get_guess(reply)
+
 
 ## TODO
 # Change number_error_Display
